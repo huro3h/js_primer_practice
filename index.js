@@ -15,26 +15,32 @@ function fetchUserInfo(userId) {
         console.error('エラーレスポンス', response);
       } else {
         return response.json().then(userInfo => {
-          // HTML組み立て
-          const view = escapeHTML`
-          <h6>${userInfo.name} (@${userInfo.login})</h6>
-          <img src="${userInfo.avatar_url}" alt="${userInfo.login}" height="75">
-          <dl>
-            <dt>Location</dt>
-            <dd>${userInfo.location}</dd>
-            <dt>Repositries</dt>
-            <dd>${userInfo.public_repos}</dd>
-          </dl>
-          `;
-
-          // 組み立てたview差し込み
-          const result = document.getElementById('result');
-          result.innerHTML = view;
+          const view = createView(userInfo);
+          displayView(view);
         });
       }
     }).catch(error => {
     console.error(error);
   });
+}
+
+function createView(userInfo) {
+  // HTML組み立て
+  return escapeHTML`
+  <h6>${userInfo.name} (@${userInfo.login})</h6>
+  <img src="${userInfo.avatar_url}" alt="${userInfo.login}" height="75">
+  <dl>
+    <dt>Location</dt>
+    <dd>${userInfo.location}</dd>
+    <dt>Repositries</dt>
+    <dd>${userInfo.public_repos}</dd>
+  </dl>
+  `;
+}
+
+function displayView(view) {
+  document.getElementById('result');
+  result.innerHTML = view;
 }
 
 // 文字列をエスケープする関数を実装(通常はライブラリとか)
