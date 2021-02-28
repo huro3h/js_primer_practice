@@ -7,3 +7,17 @@ const headingText = heading.textContent;
 const button = document.createElement('button');
 button.textContent = '押す';
 document.body.appendChild(button)
+
+const userId = 'huro3h';
+const githubApiEndPoint = 'https://api.github.com/users/'
+
+fetch(`${githubApiEndPoint}${encodeURIComponent(userId)}`)
+  .then(response => {
+    console.log(response.status);
+
+    return response.json().then(userInfo => {
+        // JSONパースされたオブジェクト
+        console.log(userInfo);
+    });
+  });
+
