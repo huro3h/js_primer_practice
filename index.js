@@ -15,9 +15,15 @@ fetch(`${githubApiEndPoint}${encodeURIComponent(userId)}`)
   .then(response => {
     console.log(response.status);
 
-    return response.json().then(userInfo => {
+    if(!response.ok) {
+      console.error('エラーレスポンス', response);
+    } else {
+      return response.json().then(userInfo => {
         // JSONパースされたオブジェクト
         console.log(userInfo);
-    });
-  });
+      });
+    }
+  }).catch(error => {
+    console.error(error);
+});
 
