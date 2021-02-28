@@ -1,4 +1,10 @@
 // console.log('index.js: loaded');
+const githubApiEndPoint = 'https://api.github.com/users/'
+
+function main() {
+  const userId = 'huro3h';
+  fetchUserInfo(userId)
+}
 
 function fetchUserInfo(userId) {
   fetch(`${githubApiEndPoint}${encodeURIComponent(userId)}`)
@@ -65,6 +71,3 @@ function escapeHTML(strings, ...values) {
 // const button = document.createElement('button');
 // button.textContent = '押す';
 // document.body.appendChild(button)
-
-// const userId = 'huro3h';
-const githubApiEndPoint = 'https://api.github.com/users/'
