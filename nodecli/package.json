@@ -1,0 +1,10 @@
+{
+  "name": "nodecli",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "huro3h",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^7.1.0"
+  }
+}
