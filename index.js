@@ -1,15 +1,15 @@
 // console.log('index.js: loaded');
 const githubApiEndPoint = 'https://api.github.com/users/'
 
-function main() {
-  const userId = 'huro3h';
-  fetchUserInfo(userId)
-    .then((userInfo) => createView(userInfo)) // JSONオブジェクトで解決されるPromise
-    .then((view) => displayView(view)) // HTML文字列で解決されるPromise
-    .catch((error) => {
-      // Promiseチェーンの中で発生したエラーを受け取る
-      console.error(`error -> ${error}`);
-    });
+async function main() {
+  try {
+    const userId = 'huro3h';
+    const userInfo = await fetchUserInfo(userId);
+    const view = createView(userInfo);
+    displayView(view);
+  } catch (error) {
+    console.error(`error -> ${error}`);
+  }
 }
 
 function fetchUserInfo(userId) {
