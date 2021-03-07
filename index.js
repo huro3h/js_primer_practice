@@ -3,7 +3,7 @@ const githubApiEndPoint = 'https://api.github.com/users/'
 
 async function main() {
   try {
-    const userId = 'huro3h';
+    const userId = getUserId();
     const userInfo = await fetchUserInfo(userId);
     const view = createView(userInfo);
     displayView(view);
@@ -11,6 +11,11 @@ async function main() {
     console.error(`error -> ${error}`);
   }
 }
+function getUserId() {
+  const userIdValue = document.getElementById("userId").value;
+  return encodeURIComponent(userIdValue);
+}
+
 
 function fetchUserInfo(userId) {
   return fetch(`${githubApiEndPoint}${encodeURIComponent(userId)}`)
