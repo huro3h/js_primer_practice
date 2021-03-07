@@ -4,6 +4,8 @@ const githubApiEndPoint = 'https://api.github.com/users/'
 function main() {
   const userId = 'huro3h';
   fetchUserInfo(userId)
+    .then((userInfo) => createView(userInfo)) // JSONオブジェクトで解決されるPromise
+    .then((view) => displayView(view)) // HTML文字列で解決されるPromise
     .catch((error) => {
       // Promiseチェーンの中で発生したエラーを受け取る
       console.error(`error -> ${error}`);
@@ -14,19 +16,13 @@ function fetchUserInfo(userId) {
   return fetch(`${githubApiEndPoint}${encodeURIComponent(userId)}`)
     .then(response => {
       console.log(response.status);
-
       if(!response.ok) {
         // エラーレスポンスからRejectedなPromiseを作成して返す
         return Promise.reject(new Error(`${response.status} : ${response.statusText}`));
       } else {
-        return response.json().then(userInfo => {
-          const view = createView(userInfo);
-          displayView(view);
-        });
+        return response.json();
       }
-    }).catch(error => {
-    console.error(error);
-  });
+    });
 }
 
 function createView(userInfo) {
