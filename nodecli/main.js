@@ -1,6 +1,8 @@
 const program = require('commander');
 const fs = require('fs');
 
+const marked = required('marked');
+
 program.parse(process.argv);
 const filePath = program.args[0];
 
@@ -14,6 +16,9 @@ fs.readFile(filePath, { encoding: 'utf-8' }, (err, file) => {
   }
   console.log(file);
 });
+
+const html = marked(file);
+console.log(html);
 
 // $ node main.js ./example000.md
 // ENOENT: no such file or directory, open './example000.md'
