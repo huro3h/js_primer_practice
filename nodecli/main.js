@@ -1,7 +1,7 @@
 const program = require('commander');
 const fs = require('fs');
 
-const marked = required('marked');
+const marked = require('marked');
 
 program.parse(process.argv);
 const filePath = program.args[0];
