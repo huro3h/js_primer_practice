@@ -14,11 +14,11 @@ fs.readFile(filePath, { encoding: 'utf-8' }, (err, file) => {
     process.exit(1);
     return;
   }
-  console.log(file);
+
+  const html = marked(file);
+  console.log(html);
 });
 
-const html = marked(file);
-console.log(html);
 
 // $ node main.js ./example000.md
 // ENOENT: no such file or directory, open './example000.md'
