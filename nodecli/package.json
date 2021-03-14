@@ -6,7 +6,9 @@
   "license": "MIT",
   "dependencies": {
     "commander": "^7.1.0",
-    "marked": "^2.0.1",
+    "marked": "^2.0.1"
+  },
+  "devDependencies": {
     "mocha": "^8.3.2"
   }
 }
