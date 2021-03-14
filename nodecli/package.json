@@ -5,6 +5,7 @@
   "author": "huro3h",
   "license": "MIT",
   "dependencies": {
-    "commander": "^7.1.0"
+    "commander": "^7.1.0",
+    "marked": "^2.0.1"
   }
 }
