@@ -1,6 +1,8 @@
 const program = require('commander');
 const fs = require('fs');
-const marked = require('marked');
+
+// md2htmlモジュールをインポート
+const md2html = require('./md2html')
 
 // gfmオプションの定義
 program.option("--gfm", "gfmを有効にする");
@@ -10,7 +12,7 @@ const filePath = program.args[0];
 const cliOptions = {
   gfm: false,
   ...program.opts(),
-}
+};
 
 // ファイルの非同期読み込み
 fs.readFile(filePath, { encoding: 'utf-8' }, (err, file) => {
@@ -21,11 +23,8 @@ fs.readFile(filePath, { encoding: 'utf-8' }, (err, file) => {
     return;
   }
 
-  const html = marked(file, {
-    // オプションの値を使用
-    gfm: cliOptions.gfm,
-  });
-
+  // md2htmlモジュールを使ったHTMLへの変換
+  const html = md2html(file, cliOptions);
   console.log(html);
 });
 
