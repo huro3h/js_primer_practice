@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "@js-primer/local-server": "^1.0.2"
+  },
+  "name": "todoapp",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "huro3h",
+  "license": "MIT"
+}
