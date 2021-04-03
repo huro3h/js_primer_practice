@@ -1,6 +1,6 @@
-// import { App } from "./src/App.js"
-// const app = new App();
-// app.mount();
+import { App } from "./src/App.js"
+const app = new App();
+app.mount();
 
 // console.log('loaded index.js');
 // console.log('start cmd yarn js-primer-local-server --port 8000');
@@ -51,4 +51,12 @@ todoListModel.onChange(() => {
   console.log("todoリストの状態が変化");
 });
 
-// 
+// 新しいTodoアイテムを追加
+// onChangeで登録したイベントリスナーが呼び出される
+todoListModel.addTodo(new TodoItemModel({
+  title: 'new todo item...',
+  completed: false
+}));
+
+// Todoリストにアイテムが増える
+console.log(todoListModel.getTotalCount());
