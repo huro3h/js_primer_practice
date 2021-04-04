@@ -24,7 +24,7 @@ export class App {
       todoItems.forEach(item => {
         const todoItemElement = item.completed
           ? element`<li><input type="checkbox" class="checkbox" checked><s>${item.title}</s></input></li>`
-          : element`<li><input type="checkbox" class="checkbox"><s>${item.title}</s></input></li>`;
+          : element`<li><input type="checkbox" class="checkbox">${item.title}</input></li>`;
 
         // チェックボックスがトグルした時のイベントにリスナー関数を登録
         const inputCheckboxElement = todoItemElement.querySelector(".checkbox");
