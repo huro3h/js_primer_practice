@@ -36,27 +36,27 @@ app.mount();
 
 // TodoListModel.js sample code
 
-import { TodoItemModel } from "./src/model/TodoItemModel.js";
-import { TodoListModel } from "./src/model/TodoListModel.js";
-
-
-// 新しいTodoリストの作成
-const todoListModel = new TodoListModel();
-
-// 現在のTodoアイテム数0
-console.log(todoListModel.getTotalCount());
-
-// Todoリストが変更されたら呼ばれるイベントリスナーを登録
-todoListModel.onChange(() => {
-  console.log("todoリストの状態が変化");
-});
-
-// 新しいTodoアイテムを追加
-// onChangeで登録したイベントリスナーが呼び出される
-todoListModel.addTodo(new TodoItemModel({
-  title: 'new todo item...',
-  completed: false
-}));
-
-// Todoリストにアイテムが増える
-console.log(todoListModel.getTotalCount());
+// import { TodoItemModel } from "./src/model/TodoItemModel.js";
+// import { TodoListModel } from "./src/model/TodoListModel.js";
+//
+//
+// // 新しいTodoリストの作成
+// const todoListModel = new TodoListModel();
+//
+// // 現在のTodoアイテム数0
+// console.log(todoListModel.getTotalCount());
+//
+// // Todoリストが変更されたら呼ばれるイベントリスナーを登録
+// todoListModel.onChange(() => {
+//   console.log("todoリストの状態が変化");
+// });
+//
+// // 新しいTodoアイテムを追加
+// // onChangeで登録したイベントリスナーが呼び出される
+// todoListModel.addTodo(new TodoItemModel({
+//   title: 'newtodo item...',
+//   completed: false
+// }));
+//
+// // Todoリストにアイテムが増える
+// console.log(todoListModel.getTotalCount());
