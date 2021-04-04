@@ -12,7 +12,7 @@ export class TodoListModel extends EventEmitter{
   }
 
   getTodoItems() {
-    return this.items.length;
+    return this.items;
   }
 
   // TodoListの状態が更新された時に呼び出されるリスナー関数を登録する
