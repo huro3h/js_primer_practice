@@ -1,6 +1,7 @@
 import { TodoListModel } from "./model/TodoListModel.js";
 import { TodoItemModel } from "./model/TodoItemModel.js";
 import { element, render } from "./view/html-util.js";
+import { TodoListView } from "./view/todoListView";
 
 export class App {
   constructor() {
@@ -16,42 +17,19 @@ export class App {
 
     // 2. TodoListModelの状態が更新されたら表示を更新する
     this.todoListModel.onChange(() => {
-      // TodoリストをまとめるList要素
-      const todoListElement = element`<ul />`;
-
       // それぞれのTodoItem要素をtodoListElement以下へ追加する
       const todoItems = this.todoListModel.getTodoItems();
-      todoItems.forEach(item => {
+      const todoListView = new TodoListView();
 
-        const todoItemElement =
-          item.completed
-            ? element`<li><input type="checkbox" class="checkbox" checked><s>${item.title}</s><button class="delete">x</button></input></li>`
-            : element`<li><input type="checkbox" class="checkbox">${item.title}<button class="delete">x</button></input></li>`;
-        // チェックボックスがトグルした時のイベントにリスナー関数を登録
-        const inputCheckboxElement = todoItemElement.querySelector(".checkbox");
-        inputCheckboxElement.addEventListener("change", () => {
-          // 指定したTodoアイテムの完了状態を反転させる
-          this.todoListModel.updateTodo({
-            id: item.id,
-            completed: !item.completed
-          });
-        });
-
-        // 削除ボタン処理
-        const deleteButtonElement = todoItemElement.querySelector(".delete");
-        deleteButtonElement.addEventListener("click", () => {
-          this.todoListModel.deleteTodo({
-            id: item.id
-          });
-        });
-
-        todoListElement.appendChild(todoItemElement);
+      const todoListElement = todoListView.createElement(todoItems, {
+        onUpdateTodo: ({ id, completed }) => {
+          this.todoListModel.updateTodo({ id, completed });
+        },
+        onDeleteTodo: ({ id }) => {
+          this.todoListModel.deleteTodo({ id });
+        }
       });
-
-      // containerElementの中身をtodoListElementで上書きする
       render(todoListElement, containerElement);
-
-      // アイテム数の表示を更新
       todoItemCountElement.textContent = `Todoアイテム数 : ${this.todoListModel.getTotalCount()}`;
     });
 
